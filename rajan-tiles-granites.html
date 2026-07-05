@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rajan Tiles & Granites | Wholesale & Retail, Kadambathur</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --graphite:#201E1B;
+    --graphite-2:#2B2824;
+    --stone:#6B6259;
+    --stone-light:#A79C8D;
+    --copper:#B8722E;
+    --copper-light:#D99A54;
+    --marble:#EEEDE7;
+    --marble-2:#FFFFFF;
+    --ink:#2A241D;
+    --ink-soft:#5A5148;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--marble);
+    color:var(--ink);
+    font-family:'Work Sans',sans-serif;
+    line-height:1.5;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-family:'Oswald',sans-serif;text-transform:uppercase;letter-spacing:0.02em;}
+  a{text-decoration:none;color:inherit;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
+  a:focus-visible, button:focus-visible{outline:3px solid var(--copper);outline-offset:3px;}
+  @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important;} }
+  img,svg{display:block;}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.visible{opacity:1;transform:translateY(0);}
+  .reveal-stagger.visible .stagger-item{opacity:1;transform:translateY(0);}
+  .stagger-item{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease;}
+  .stagger-item:nth-child(1){transition-delay:.05s;}
+  .stagger-item:nth-child(2){transition-delay:.13s;}
+  .stagger-item:nth-child(3){transition-delay:.21s;}
+  .stagger-item:nth-child(4){transition-delay:.29s;}
+  .stagger-item:nth-child(5){transition-delay:.37s;}
+  .stagger-item:nth-child(6){transition-delay:.45s;}
+
+  /* HEADER */
+  header{
+    position:sticky;top:0;z-index:50;
+    background:var(--graphite);
+    border-bottom:3px solid var(--copper);
+  }
+  header .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:14px;padding-bottom:14px;}
+  .logo-block{display:flex;flex-direction:column;line-height:1.05;}
+  .logo{color:var(--marble-2);font-size:1.4rem;font-weight:700;letter-spacing:0.03em;}
+  .logo span{color:var(--copper-light);}
+  .tagline-small{color:var(--stone-light);font-size:0.66rem;letter-spacing:0.16em;text-transform:uppercase;margin-top:3px;font-family:'Work Sans',sans-serif;}
+  nav{display:flex;align-items:center;gap:24px;}
+  nav a.nav-link{color:#D8D3CB;font-size:0.9rem;font-weight:500;position:relative;padding-bottom:4px;text-transform:uppercase;letter-spacing:0.04em;}
+  nav a.nav-link::after{content:'';position:absolute;left:0;bottom:0;width:0;height:2px;background:var(--copper);transition:width .25s ease;}
+  nav a.nav-link:hover::after, nav a.nav-link.active::after{width:100%;}
+  nav a.nav-link:hover{color:var(--copper-light);}
+  .nav-cta{background:var(--copper);color:var(--graphite) !important;padding:9px 18px;border-radius:2px;font-weight:700;font-size:0.85rem;text-transform:uppercase;letter-spacing:0.04em;transition:transform .15s ease;}
+  .nav-cta:hover{transform:translateY(-1px);}
+  @media (max-width:700px){ nav .nav-link{display:none;} }
+
+  /* HERO */
+  .hero{
+    background:linear-gradient(155deg, var(--graphite) 0%, var(--graphite-2) 100%);
+    color:var(--marble-2);
+    padding:70px 0 90px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero .wrap{display:grid;grid-template-columns:1.1fr 0.9fr;gap:40px;align-items:center;position:relative;z-index:2;}
+  @media (max-width:840px){ .hero .wrap{grid-template-columns:1fr;} .hero{padding:50px 0 190px;} }
+
+  .eyebrow{color:var(--copper-light);text-transform:uppercase;letter-spacing:0.18em;font-size:0.72rem;font-weight:600;margin-bottom:16px;}
+  .hero h1{font-size:clamp(2rem,4.6vw,3.1rem);line-height:1.1;color:var(--marble-2);}
+  .hero h1 span{color:var(--copper-light);}
+  .hero p.lede{margin-top:20px;font-size:1.05rem;color:#C9C3B9;max-width:48ch;}
+  .hero-ctas{display:flex;gap:14px;margin-top:32px;flex-wrap:wrap;}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;border-radius:2px;font-weight:700;font-size:0.9rem;text-transform:uppercase;letter-spacing:0.04em;transition:transform .15s ease, box-shadow .15s ease;position:relative;overflow:hidden;}
+  .btn-primary{background:var(--copper);color:var(--graphite);}
+  .btn-primary::before{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(120deg, transparent, rgba(255,255,255,0.55), transparent);transform:skewX(-20deg);animation:shine 3.4s ease-in-out infinite;}
+  @keyframes shine{0%{left:-60%;}50%{left:130%;}100%{left:130%;}}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(184,114,46,0.35);}
+  .btn-outline{border:1.5px solid var(--stone-light);color:var(--marble-2);}
+  .btn-outline:hover{border-color:var(--copper);color:var(--copper-light);transform:translateY(-2px);}
+
+  /* SWATCH FAN */
+  .swatch-fan{position:relative;width:100%;max-width:320px;height:320px;margin:0 auto;}
+  @media (max-width:840px){ .swatch-fan{position:absolute;bottom:-150px;left:50%;transform:translateX(-50%);} }
+  .swatch{
+    position:absolute;width:150px;height:190px;border-radius:6px;
+    box-shadow:0 16px 30px rgba(0,0,0,0.35);
+    border:3px solid rgba(255,255,255,0.08);
+    display:flex;align-items:flex-end;padding:12px;
+    transition:transform .3s ease;
+  }
+  .swatch span{color:rgba(255,255,255,0.92);font-size:0.7rem;font-weight:700;text-transform:uppercase;letter-spacing:0.04em;font-family:'Oswald',sans-serif;}
+  .swatch:hover{transform:translateY(-8px) scale(1.03) !important;}
+  .swatch-1{
+    background:radial-gradient(circle at 20% 20%, #5a544c, #2b2824 70%);
+    top:60px;left:10px;transform:rotate(-14deg);z-index:1;
+  }
+  .swatch-2{
+    background:radial-gradient(circle at 70% 30%, #8c8579, #4a453e 75%);
+    top:20px;left:85px;transform:rotate(-4deg);z-index:2;
+  }
+  .swatch-3{
+    background:radial-gradient(circle at 30% 70%, #b8722e, #6b4620 80%);
+    top:60px;left:160px;transform:rotate(9deg);z-index:1;
+  }
+
+  /* TICKER */
+  .ticker{background:var(--graphite-2);overflow:hidden;white-space:nowrap;border-top:1px solid rgba(255,255,255,0.08);border-bottom:1px solid rgba(255,255,255,0.08);position:relative;z-index:2;}
+  .ticker-track{display:inline-flex;animation:scrollTicker 30s linear infinite;}
+  .ticker-track span{color:var(--stone-light);font-size:0.8rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;padding:12px 30px;display:inline-flex;align-items:center;font-family:'Oswald',sans-serif;}
+  .ticker-track span::after{content:'◆';color:var(--copper);margin-left:30px;font-size:0.6rem;}
+  @keyframes scrollTicker{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+  /* SECTIONS */
+  section{padding:80px 0;}
+  .section-head{max-width:660px;margin:0 auto 46px;text-align:center;}
+  .eyebrow-dark{color:var(--copper);text-transform:uppercase;letter-spacing:0.18em;font-size:0.72rem;font-weight:700;margin-bottom:14px;}
+  h2{font-size:clamp(1.7rem,3.2vw,2.4rem);color:var(--ink);}
+
+  /* ABOUT */
+  .about{background:var(--marble);}
+  .about .grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start;}
+  @media (max-width:780px){ .about .grid{grid-template-columns:1fr;} }
+  .about p{color:var(--ink-soft);font-size:1.02rem;margin-bottom:16px;max-width:52ch;}
+  .stat-row{display:flex;gap:30px;margin-top:26px;flex-wrap:wrap;}
+  .stat{border-left:3px solid var(--copper);padding-left:14px;}
+  .stat .num{font-family:'Oswald',sans-serif;font-size:1.8rem;color:var(--graphite);display:block;}
+  .stat .label{font-size:0.8rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.03em;}
+  .service-tags{display:flex;flex-direction:column;gap:14px;}
+  .service-tag{display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #E1DCD1;padding:16px 18px;border-radius:6px;transition:transform .2s ease, box-shadow .2s ease;}
+  .service-tag:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(42,36,29,0.1);}
+  .service-tag .dot{width:10px;height:10px;background:var(--copper);flex-shrink:0;}
+  .service-tag strong{font-size:0.98rem;color:var(--ink);text-transform:uppercase;letter-spacing:0.02em;font-family:'Oswald',sans-serif;font-weight:500;}
+  .service-tag span.desc{color:var(--ink-soft);font-size:0.88rem;display:block;}
+
+  /* PRODUCTS */
+  .products{background:var(--graphite);color:var(--marble-2);}
+  .products .eyebrow-dark{color:var(--copper-light);}
+  .products .section-head p{color:#C9C3B9;}
+  .products-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.1);}
+  @media (max-width:780px){ .products-grid{grid-template-columns:repeat(2,1fr);} }
+  @media (max-width:500px){ .products-grid{grid-template-columns:1fr;} }
+  .product{background:var(--graphite-2);padding:34px 26px;transition:background .2s ease, transform .2s ease;}
+  .product:hover{background:#332F29;transform:translateY(-4px);}
+  .product-icon{width:42px;height:42px;margin-bottom:16px;}
+  .product h3{font-size:1.1rem;color:var(--marble-2);margin-bottom:6px;font-weight:500;}
+  .product p{color:#B7B1A6;font-size:0.88rem;}
+
+  /* BRANDS */
+  .brands{background:var(--marble);}
+  .brand-row{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;}
+  .brand-chip{background:#fff;border:1px solid #E1DCD1;color:var(--ink);padding:14px 26px;border-radius:4px;font-family:'Oswald',sans-serif;font-weight:500;font-size:1rem;letter-spacing:0.03em;text-transform:uppercase;transition:transform .2s ease, box-shadow .2s ease, border-color .2s ease;}
+  .brand-chip:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(42,36,29,0.12);border-color:var(--copper);}
+  .brands-note{text-align:center;color:var(--ink-soft);margin-top:28px;font-size:0.92rem;}
+
+  /* CONTACT */
+  .contact{background:var(--graphite);color:var(--marble-2);text-align:center;}
+  .contact h2{color:var(--marble-2);}
+  .contact .eyebrow-dark{color:var(--copper-light);}
+  .contact p.lede{color:#C9C3B9;max-width:50ch;margin:16px auto 0;}
+  .contact-ctas{display:flex;gap:16px;justify-content:center;margin-top:32px;flex-wrap:wrap;}
+  .contact .btn-outline{border-color:var(--stone-light);color:var(--marble-2);}
+  .contact-details{margin-top:44px;display:inline-flex;flex-direction:column;gap:16px;background:var(--graphite-2);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:30px 36px;text-align:left;max-width:460px;}
+  .contact-row{display:flex;align-items:flex-start;gap:12px;}
+  .contact-row .icon{color:var(--copper-light);flex-shrink:0;margin-top:2px;font-size:1.1rem;}
+  .contact-row .label{font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--copper-light);font-weight:700;margin-bottom:2px;}
+  .contact-row .value{color:var(--marble-2);font-size:0.96rem;}
+  .contact-row a.value:hover{color:var(--copper-light);}
+
+  /* FLOATING WHATSAPP */
+  .float-whatsapp{position:fixed;bottom:26px;right:26px;z-index:100;width:60px;height:60px;border-radius:50%;background:var(--copper);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px rgba(0,0,0,0.35);transition:transform .2s ease;}
+  .float-whatsapp:hover{transform:scale(1.08);}
+  .float-whatsapp::before{content:'';position:absolute;inset:-6px;border-radius:50%;border:2px solid var(--copper);animation:pulseRing 2.4s ease-out infinite;}
+  @keyframes pulseRing{0%{transform:scale(1);opacity:0.7;}100%{transform:scale(1.5);opacity:0;}}
+  .float-whatsapp svg{width:28px;height:28px;}
+
+  footer{background:var(--graphite-2);color:#B7B1A6;padding:26px 0;text-align:center;font-size:0.85rem;}
+  footer strong{color:var(--marble-2);}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo-block">
+      <div class="logo">Rajan <span>Tiles & Granites</span></div>
+      <div class="tagline-small">Wholesale & Retail</div>
+    </div>
+    <nav>
+      <a class="nav-link" href="#about">About</a>
+      <a class="nav-link" href="#products">Products</a>
+      <a class="nav-link" href="#brands">Brands</a>
+      <a class="nav-cta" href="https://wa.me/919597552334" target="_blank" rel="noopener">WhatsApp Us</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Prop: R. Dinesh</div>
+      <h1>Strong foundations, <span>finished in stone.</span></h1>
+      <p class="lede">Rajan Tiles and Granites supplies Kadappa stone, vitrified tiles, granites, stainless steel sinks, cool roofing tiles and bathroom fittings. We serve homes, builders and contractors across Kadambathur and the Tiruvallur district on wholesale and retail terms.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="https://wa.me/919597552334" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        <a class="btn btn-outline" href="tel:+919597552334">Call 95975 52334</a>
+      </div>
+    </div>
+    <div class="swatch-fan" aria-hidden="true">
+      <div class="swatch swatch-1"><span>Kadappa</span></div>
+      <div class="swatch swatch-2"><span>Granite</span></div>
+      <div class="swatch swatch-3"><span>Vitrified</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Kadappa Stone</span><span>Vitrified Tiles</span><span>Granites</span><span>Stainless Steel Sinks</span><span>Cool Roofing Tiles</span><span>Bathroom Fittings</span>
+    <span>Kadappa Stone</span><span>Vitrified Tiles</span><span>Granites</span><span>Stainless Steel Sinks</span><span>Cool Roofing Tiles</span><span>Bathroom Fittings</span>
+  </div>
+</div>
+
+<section class="about reveal" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow-dark">About Us</div>
+      <h2>Trusted supply for homes and builders.</h2>
+    </div>
+    <div class="grid">
+      <div>
+        <p>Rajan Tiles and Granites is a wholesale and retail supplier based in Kadambathur, Tiruvallur district. We stock Kadappa stone, vitrified tiles, granites, stainless steel sinks, cool roofing tiles and bathroom fittings for every kind of project, from a single home renovation to a full construction site.</p>
+        <p>We work with leading brands to make sure every batch we supply holds up to daily use and looks right for years. Whether you are a homeowner, a contractor or a builder, we help you pick the right material for the job and the budget.</p>
+        <div class="stat-row">
+          <div class="stat"><span class="num">6+</span><span class="label">Product categories</span></div>
+          <div class="stat"><span class="num">6</span><span class="label">Partner brands</span></div>
+          <div class="stat"><span class="num">Wholesale</span><span class="label">& Retail</span></div>
+        </div>
+      </div>
+      <div class="service-tags">
+        <div class="service-tag">
+          <div class="dot"></div>
+          <div><strong>Homes & Renovations</strong><span class="desc">Tiles, granite counters and bathroom fittings for individual homes.</span></div>
+        </div>
+        <div class="service-tag">
+          <div class="dot"></div>
+          <div><strong>Builders & Contractors</strong><span class="desc">Bulk wholesale supply of Kadappa stone, vitrified tiles and roofing material.</span></div>
+        </div>
+        <div class="service-tag">
+          <div class="dot"></div>
+          <div><strong>Genuine Brands</strong><span class="desc">Authorized supply from Johnson, Nitco, Parryware, Somany and more.</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="products reveal" id="products">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow-dark">What We Supply</div>
+      <h2>Everything from the floor up.</h2>
+    </div>
+    <div class="products-grid reveal-stagger">
+
+      <div class="product stagger-item">
+        <svg class="product-icon" viewBox="0 0 48 48" fill="none"><rect x="6" y="14" width="36" height="20" rx="2" fill="#B8722E" fill-opacity="0.35"/><rect x="6" y="14" width="36" height="20" rx="2" stroke="#D99A54" stroke-width="2"/></svg>
+        <h3>Kadappa Stone</h3>
+        <p>Durable black limestone slabs for flooring, steps and platforms.</p>
+      </div>
+
+      <div class="product stagger-item">
+        <svg class="product-icon" viewBox="0 0 48 48" fill="none"><rect x="6" y="6" width="16" height="16" rx="1" fill="#A79C8D" fill-opacity="0.5"/><rect x="26" y="6" width="16" height="16" rx="1" fill="#A79C8D" fill-opacity="0.3"/><rect x="6" y="26" width="16" height="16" rx="1" fill="#A79C8D" fill-opacity="0.3"/><rect x="26" y="26" width="16" height="16" rx="1" fill="#A79C8D" fill-opacity="0.5"/></svg>
+        <h3>Vitrified Tiles</h3>
+        <p>Wide range of vitrified floor tiles from leading national brands.</p>
+      </div>
+
+      <div class="product stagger-item">
+        <svg class="product-icon" viewBox="0 0 48 48" fill="none"><circle cx="24" cy="24" r="16" fill="#D99A54" fill-opacity="0.2"/><circle cx="16" cy="18" r="2.5" fill="#D99A54"/><circle cx="30" cy="14" r="2" fill="#D99A54"/><circle cx="32" cy="28" r="2.5" fill="#D99A54"/><circle cx="18" cy="32" r="2" fill="#D99A54"/></svg>
+        <h3>Granites</h3>
+        <p>Polished granite slabs for countertops, flooring and cladding.</p>
+      </div>
+
+      <div class="product stagger-item">
+        <svg class="product-icon" viewBox="0 0 48 48" fill="none"><rect x="8" y="16" width="32" height="18" rx="4" fill="none" stroke="#D99A54" stroke-width="2"/><ellipse cx="18" cy="25" rx="5" ry="4" fill="#D99A54" fill-opacity="0.3"/><ellipse cx="30" cy="25" rx="5" ry="4" fill="#D99A54" fill-opacity="0.3"/></svg>
+        <h3>Stainless Steel Sinks</h3>
+        <p>Kitchen sinks built for daily use and long term durability.</p>
+      </div>
+
+      <div class="product stagger-item">
+        <svg class="product-icon" viewBox="0 0 48 48" fill="none"><path d="M6 24L24 10L42 24" stroke="#D99A54" stroke-width="2" fill="none"/><path d="M10 24V38H38V24" fill="#D99A54" fill-opacity="0.2" stroke="#D99A54" stroke-width="2"/></svg>
+        <h3>Cool Roofing Tiles</h3>
+        <p>Heat reflecting roof tiles that keep interiors noticeably cooler.</p>
+      </div>
+
+      <div class="product stagger-item">
+        <svg class="product-icon" viewBox="0 0 48 48" fill="none"><path d="M16 8v14a8 8 0 0016 0V8" stroke="#D99A54" stroke-width="2" fill="none"/><rect x="20" y="30" width="8" height="10" rx="1" fill="#D99A54" fill-opacity="0.3"/></svg>
+        <h3>Bathroom Fittings</h3>
+        <p>Taps, fixtures and fittings to complete every bathroom.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="brands reveal" id="brands">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="eyebrow-dark">Our Brands</div>
+      <h2>Authorized dealer for names you trust.</h2>
+    </div>
+    <div class="brand-row">
+      <div class="brand-chip">Johnson</div>
+      <div class="brand-chip">Nitco</div>
+      <div class="brand-chip">Parryware</div>
+      <div class="brand-chip">Somany</div>
+      <div class="brand-chip">Anuj Vitrified Tiles</div>
+      <div class="brand-chip">KAG Tiles</div>
+    </div>
+    <p class="brands-note">All products are sourced directly from these brands and their authorized distributors.</p>
+  </div>
+</section>
+
+<section class="contact reveal" id="contact">
+  <div class="wrap">
+    <div class="eyebrow-dark">Get In Touch</div>
+    <h2>Need material for your next project?</h2>
+    <p class="lede">Tell us what you are building and how much you need. We will help you choose the right stone or tile and quote you a fair wholesale or retail price.</p>
+    <div class="contact-ctas">
+      <a class="btn btn-primary" href="https://wa.me/919597552334" target="_blank" rel="noopener">Message on WhatsApp</a>
+      <a class="btn btn-outline" href="tel:+919597552334">Call Now</a>
+    </div>
+
+    <div class="contact-details">
+      <div class="contact-row">
+        <span class="icon">☎</span>
+        <div>
+          <div class="label">Phone</div>
+          <a class="value" href="tel:+919597552334">95975 52334</a><br>
+          <a class="value" href="tel:+918608136305">86081 36305</a>
+        </div>
+      </div>
+      <div class="contact-row">
+        <span class="icon">📍</span>
+        <div>
+          <div class="label">Address</div>
+          <a class="value" href="https://www.google.com/maps/search/?api=1&query=Mahatma+Gandhi+Nagar+Venmanampudhur+Kadambathur+Tiruvallur+631203" target="_blank" rel="noopener">
+            Mahatma Gandhi Nagar, Venmanampudhur,<br>
+            Kadambathur, Tiruvallur District, 631203
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<a class="float-whatsapp" href="https://wa.me/919597552334" target="_blank" rel="noopener" aria-label="Message us on WhatsApp">
+  <svg viewBox="0 0 32 32" fill="none"><path d="M16 3C9 3 3.3 8.7 3.3 15.7c0 2.5.7 4.8 1.9 6.8L3 29l6.7-2.1c1.9 1 4.1 1.6 6.3 1.6 7 0 12.7-5.7 12.7-12.7C28.7 8.7 23 3 16 3z" fill="#201E1B"/><path d="M22 19.3c-.3-.2-2-1-2.3-1.1-.3-.1-.5-.2-.8.2-.2.3-.9 1.1-1.1 1.3-.2.2-.4.2-.7.1-.3-.2-1.4-.5-2.6-1.6-1-.9-1.6-2-1.8-2.3-.2-.3 0-.5.1-.6.1-.1.3-.4.5-.5.1-.2.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.2-.8-1.8-1-2.5-.3-.6-.5-.5-.8-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.4s1 2.8 1.2 3c.1.2 2 3 4.8 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.6-.1 1.7-.7 2-1.4.2-.6.2-1.2.2-1.3-.1-.1-.3-.2-.6-.3z" fill="#EEEDE7"/></svg>
+</a>
+
+<footer>
+  <div class="wrap"><strong>Rajan Tiles & Granites.</strong> Prop: R. Dinesh. Wholesale and Retail. Kadambathur, Tiruvallur District.</div>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => io.observe(el));
+
+  const sections = ['about','products','brands','contact'].map(id => document.getElementById(id));
+  const navLinks = document.querySelectorAll('nav a.nav-link');
+  const navIo = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const match = document.querySelector(`nav a[href="#${e.target.id}"]`);
+        if (match) match.classList.add('active');
+      }
+    });
+  }, { threshold: 0.5 });
+  sections.forEach(s => { if (s) navIo.observe(s); });
+</script>
+
+</body>
+</html>
